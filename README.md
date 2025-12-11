@@ -302,10 +302,6 @@ The backend allows all origins by default. If issues persist, check browser cons
 
 This is an educational/research project. Feel free to extend and customize for your needs.
 
-## License
-
-MIT License - Free to use for academic and commercial purposes.
-
 ## Acknowledgments
 
 - OpenAI Whisper for state-of-the-art ASR
@@ -314,5 +310,3 @@ MIT License - Free to use for academic and commercial purposes.
 - React for the frontend framework
 
 ---
-
-**Built with ❤️ for AI Speech Processing Research**
