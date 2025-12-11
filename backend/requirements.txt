@@ -1,0 +1,26 @@
+# FastAPI and Web Server
+fastapi==0.104.1
+uvicorn==0.24.0
+python-multipart==0.0.6
+pydantic==2.5.0
+
+# Core Scientific Computing
+numpy==1.24.3
+scipy==1.11.3
+
+# Machine Learning and AI
+transformers==4.36.0
+torch==2.1.0
+torchaudio==2.1.0
+
+# Optional: For faster Whisper inference
+# Uncomment if you want to use faster-whisper instead of transformers
+# faster-whisper==0.10.0
+
+# Audio Processing
+librosa==0.10.1
+soundfile==0.12.1
+pydub==0.25.1
+
+# Utilities
+python-dateutil==2.8.2

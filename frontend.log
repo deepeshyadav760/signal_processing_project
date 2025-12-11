@@ -1,0 +1,5 @@
+::1 - - [05/Dec/2025 11:10:26] "GET / HTTP/1.1" 200 -
+::1 - - [05/Dec/2025 11:10:27] code 404, message File not found
+::1 - - [05/Dec/2025 11:10:27] "GET /favicon.ico HTTP/1.1" 404 -
+::1 - - [05/Dec/2025 11:10:44] code 404, message File not found
+::1 - - [05/Dec/2025 11:10:44] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 -

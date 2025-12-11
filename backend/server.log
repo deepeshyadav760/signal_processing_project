@@ -1,0 +1,144 @@
+2025-12-11 10:30:34,033 - __main__ - INFO - Initializing services...
+2025-12-11 10:30:34,033 - whisper_service - INFO - Loading Whisper model: openai/whisper-base
+2025-12-11 10:30:38,112 - whisper_service - INFO - Using device: cpu
+'(ReadTimeoutError("HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: a79c57ca-9c9d-4c5c-9059-f92df7c5d202)')' thrown while requesting HEAD https://huggingface.co/openai/whisper-base/resolve/main/config.json
+2025-12-11 10:31:28,368 - huggingface_hub.utils._http - WARNING - '(ReadTimeoutError("HTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)"), '(Request ID: a79c57ca-9c9d-4c5c-9059-f92df7c5d202)')' thrown while requesting HEAD https://huggingface.co/openai/whisper-base/resolve/main/config.json
+Retrying in 1s [Retry 1/5].
+2025-12-11 10:31:28,368 - huggingface_hub.utils._http - WARNING - Retrying in 1s [Retry 1/5].
+Device set to use cpu
+Using `chunk_length_s` is very experimental with seq2seq models. The results will not necessarily be entirely accurate and will have caveats. More information: https://github.com/huggingface/transformers/pull/20104. Ignore this warning with pipeline(..., ignore_warning=True). To use Whisper for long-form transcription, use rather the model's `generate` method directly as the model relies on it's own chunking mechanism (cf. Whisper original paper, section 3.8. Long-form Transcription).
+2025-12-11 10:31:32,503 - whisper_service - INFO - Whisper pipeline loaded successfully
+2025-12-11 10:31:32,503 - __main__ - INFO - Whisper service initialized with REAL model (base, English)
+INFO:     Started server process [25229]
+INFO:     Waiting for application startup.
+2025-12-11 10:31:32,543 - __main__ - INFO - ============================================================
+2025-12-11 10:31:32,543 - __main__ - INFO - AI Speech Intelligence Platform - Starting
+2025-12-11 10:31:32,543 - __main__ - INFO - ============================================================
+2025-12-11 10:31:32,543 - __main__ - INFO - DSP Processor: Initialized (sample_rate=16000)
+2025-12-11 10:31:32,543 - __main__ - INFO - Gender Classifier: Initialized
+2025-12-11 10:31:32,543 - __main__ - INFO - Command Detector: Initialized (wake_word='hey dsp')
+2025-12-11 10:31:32,543 - __main__ - INFO - Whisper Service: {'model_name': 'openai/whisper-base', 'use_local': True, 'available': True, 'has_pipeline': True, 'has_model': False}
+2025-12-11 10:31:32,543 - __main__ - INFO - ============================================================
+2025-12-11 10:31:32,543 - __main__ - INFO - All services ready!
+2025-12-11 10:31:32,543 - __main__ - INFO - ============================================================
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:55821 - "GET /api/history?limit=20 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55822 - "GET /api/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55924 - "GET /api/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56440 - "GET /api/history?limit=20 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56441 - "GET /api/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56460 - "OPTIONS /api/transcribe HTTP/1.1" 200 OK
+2025-12-11 10:35:57,949 - __main__ - INFO - Received base64 audio: 337920 chars
+2025-12-11 10:35:57,951 - __main__ - INFO - Decoded to bytes: 253440 bytes
+2025-12-11 10:35:57,951 - __main__ - INFO - Converted to audio: 63360 samples (3.96s)
+2025-12-11 10:35:57,952 - __main__ - INFO - Audio energy: 0.020658, max: 0.288359
+2025-12-11 10:35:57,953 - dsp_processor - INFO - ============================================================
+2025-12-11 10:35:57,953 - dsp_processor - INFO - 🔊 STARTING DSP PIPELINE
+2025-12-11 10:35:57,953 - dsp_processor - INFO - ============================================================
+2025-12-11 10:35:57,953 - dsp_processor - INFO - 📊 Original Audio - Energy: 0.020658, Max: 0.288359
+2025-12-11 10:35:57,957 - dsp_processor - INFO - ✅ Step 1: VAD - Voice activity ratio: 0.21 (21%)
+2025-12-11 10:35:57,963 - dsp_processor - INFO - ✅ Bandpass filter applied: 80Hz - 7900Hz
+2025-12-11 10:35:57,963 - dsp_processor - INFO - ✅ Step 2: Bandpass - Energy after filtering: 0.020388
+2025-12-11 10:35:57,963 - dsp_processor - INFO - ✅ Step 3: Pre-emphasis - Energy: 0.003816
+2025-12-11 10:35:57,965 - dsp_processor - INFO - ✅ Step 4: STFT - Frequency bins: 257, Time frames: 249
+2025-12-11 10:35:57,966 - dsp_processor - INFO - ✅ Step 5: Noise Estimation - Average noise level: 0.000106
+2025-12-11 10:35:57,975 - dsp_processor - INFO - ✅ Step 6: Spectral Subtraction - Over-subtraction factor: 2.0
+2025-12-11 10:35:57,976 - dsp_processor - INFO - ✅ Step 7: Wiener Filter - Noise power: 0.000000
+2025-12-11 10:35:57,978 - dsp_processor - INFO - ✅ Step 8: Inverse STFT - Reconstructed 63488 samples
+2025-12-11 10:35:57,978 - dsp_processor - ERROR - DSP processing error: operands could not be broadcast together with shapes (63360,) (63488,) 
+2025-12-11 10:35:57,978 - __main__ - INFO - DSP applied: False, Voice ratio: 1.00
+2025-12-11 10:35:59,509 - whisper_service - INFO - Transcription: Hello, hello, this is Tipa Grover. How are you?
+2025-12-11 10:35:59,509 - __main__ - INFO - Transcript: Hello, hello, this is Tipa Grover. How are you?
+2025-12-11 10:36:00,349 - gender_classifier - INFO - Gender prediction: male (confidence: 1.00)
+2025-12-11 10:36:00,349 - gender_classifier - INFO - Features - Pitch: 112.7Hz, F1: 402.7Hz, Centroid: 1262.8Hz
+INFO:     127.0.0.1:56460 - "POST /api/transcribe HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56460 - "GET /api/history?limit=20 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56462 - "GET /api/history?limit=20 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56511 - "GET /api/stats HTTP/1.1" 200 OK
+2025-12-11 10:36:25,790 - __main__ - INFO - Received base64 audio: 512000 chars
+2025-12-11 10:36:25,792 - __main__ - INFO - Decoded to bytes: 384000 bytes
+2025-12-11 10:36:25,792 - __main__ - INFO - Converted to audio: 96000 samples (6.00s)
+2025-12-11 10:36:25,792 - __main__ - INFO - Audio energy: 0.034194, max: 0.791577
+2025-12-11 10:36:25,792 - dsp_processor - INFO - ============================================================
+2025-12-11 10:36:25,792 - dsp_processor - INFO - 🔊 STARTING DSP PIPELINE
+2025-12-11 10:36:25,792 - dsp_processor - INFO - ============================================================
+2025-12-11 10:36:25,793 - dsp_processor - INFO - 📊 Original Audio - Energy: 0.034194, Max: 0.791577
+2025-12-11 10:36:25,798 - dsp_processor - INFO - ✅ Step 1: VAD - Voice activity ratio: 0.14 (14%)
+2025-12-11 10:36:25,803 - dsp_processor - INFO - ✅ Bandpass filter applied: 80Hz - 7900Hz
+2025-12-11 10:36:25,803 - dsp_processor - INFO - ✅ Step 2: Bandpass - Energy after filtering: 0.033865
+2025-12-11 10:36:25,803 - dsp_processor - INFO - ✅ Step 3: Pre-emphasis - Energy: 0.007535
+2025-12-11 10:36:25,806 - dsp_processor - INFO - ✅ Step 4: STFT - Frequency bins: 257, Time frames: 376
+2025-12-11 10:36:25,806 - dsp_processor - INFO - ✅ Step 5: Noise Estimation - Average noise level: 0.000135
+2025-12-11 10:36:25,813 - dsp_processor - INFO - ✅ Step 6: Spectral Subtraction - Over-subtraction factor: 2.0
+2025-12-11 10:36:25,814 - dsp_processor - INFO - ✅ Step 7: Wiener Filter - Noise power: 0.000000
+2025-12-11 10:36:25,816 - dsp_processor - INFO - ✅ Step 8: Inverse STFT - Reconstructed 96000 samples
+2025-12-11 10:36:25,817 - dsp_processor - INFO - 📊 Final Audio - Energy: 0.015216
+2025-12-11 10:36:25,817 - dsp_processor - INFO - 📉 Noise Reduction: 48.1 dB
+2025-12-11 10:36:25,817 - dsp_processor - INFO - 📈 PSNR (Peak Signal-to-Noise Ratio): 22.2 dB
+2025-12-11 10:36:25,817 - dsp_processor - INFO - 📡 SNR (Signal-to-Noise Ratio): -5.6 dB
+2025-12-11 10:36:25,817 - dsp_processor - INFO - ============================================================
+2025-12-11 10:36:25,817 - dsp_processor - INFO - ✅ DSP PIPELINE COMPLETE
+2025-12-11 10:36:25,817 - dsp_processor - INFO - ============================================================
+2025-12-11 10:36:25,817 - __main__ - INFO - DSP applied: True, Voice ratio: 0.14
+2025-12-11 10:36:27,336 - whisper_service - INFO - Transcription: Hello, hello, this is Pete from the Marriott, we're going to be building a web, so we are presenting a puzzle.
+2025-12-11 10:36:27,336 - __main__ - INFO - Transcript: Hello, hello, this is Pete from the Marriott, we're going to be building a web, so we are presenting a puzzle.
+2025-12-11 10:36:30,723 - gender_classifier - INFO - Gender prediction: female (confidence: 0.75)
+2025-12-11 10:36:30,723 - gender_classifier - INFO - Features - Pitch: 238.8Hz, F1: 540.2Hz, Centroid: 3073.2Hz
+INFO:     127.0.0.1:56534 - "POST /api/transcribe HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56534 - "GET /api/history?limit=20 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57980 - "GET /api/history?limit=20 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57982 - "GET /api/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58123 - "OPTIONS /api/transcribe HTTP/1.1" 200 OK
+2025-12-11 10:48:00,930 - __main__ - INFO - Received base64 audio: 1280000 chars
+2025-12-11 10:48:00,934 - __main__ - INFO - Decoded to bytes: 960000 bytes
+2025-12-11 10:48:00,934 - __main__ - INFO - Converted to audio: 240000 samples (15.00s)
+2025-12-11 10:48:00,937 - __main__ - INFO - Audio energy: 0.035574, max: 0.997959
+2025-12-11 10:48:00,937 - dsp_processor - INFO - ============================================================
+2025-12-11 10:48:00,937 - dsp_processor - INFO - 🔊 STARTING DSP PIPELINE
+2025-12-11 10:48:00,937 - dsp_processor - INFO - ============================================================
+2025-12-11 10:48:00,937 - dsp_processor - INFO - 📊 Original Audio - Energy: 0.035574, Max: 0.997959
+2025-12-11 10:48:00,944 - dsp_processor - INFO - ✅ Step 1: VAD - Voice activity ratio: 0.22 (22%)
+2025-12-11 10:48:00,956 - dsp_processor - INFO - ✅ Bandpass filter applied: 80Hz - 7900Hz
+2025-12-11 10:48:00,956 - dsp_processor - INFO - ✅ Step 2: Bandpass - Energy after filtering: 0.035474
+2025-12-11 10:48:00,957 - dsp_processor - INFO - ✅ Step 3: Pre-emphasis - Energy: 0.009918
+2025-12-11 10:48:00,961 - dsp_processor - INFO - ✅ Step 4: STFT - Frequency bins: 257, Time frames: 939
+2025-12-11 10:48:00,962 - dsp_processor - INFO - ✅ Step 5: Noise Estimation - Average noise level: 0.000129
+2025-12-11 10:48:00,979 - dsp_processor - INFO - ✅ Step 6: Spectral Subtraction - Over-subtraction factor: 2.0
+2025-12-11 10:48:00,981 - dsp_processor - INFO - ✅ Step 7: Wiener Filter - Noise power: 0.000000
+2025-12-11 10:48:00,988 - dsp_processor - INFO - ✅ Step 8: Inverse STFT - Reconstructed 240128 samples
+2025-12-11 10:48:00,989 - dsp_processor - ERROR - DSP processing error: operands could not be broadcast together with shapes (240000,) (240128,) 
+2025-12-11 10:48:00,989 - __main__ - INFO - DSP applied: False, Voice ratio: 1.00
+2025-12-11 10:48:02,499 - whisper_service - INFO - Transcription: Hi, so we are presenting our digital signal processing project. Yes, so we have done AI speech intelligence platform. We have done through DSP.
+2025-12-11 10:48:02,499 - __main__ - INFO - Transcript: Hi, so we are presenting our digital signal processing project. Yes, so we have done AI speech intelligence platform. We have done through DSP.
+2025-12-11 10:48:13,014 - gender_classifier - INFO - Gender prediction: male (confidence: 0.88)
+2025-12-11 10:48:13,014 - gender_classifier - INFO - Features - Pitch: 140.4Hz, F1: 567.1Hz, Centroid: 1447.8Hz
+INFO:     127.0.0.1:58123 - "POST /api/transcribe HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58123 - "GET /api/history?limit=20 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58436 - "GET /api/history?limit=20 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58437 - "GET /api/stats HTTP/1.1" 200 OK
+2025-12-11 10:50:24,474 - __main__ - INFO - Received base64 audio: 803840 chars
+2025-12-11 10:50:24,477 - __main__ - INFO - Decoded to bytes: 602880 bytes
+2025-12-11 10:50:24,477 - __main__ - INFO - Converted to audio: 150720 samples (9.42s)
+2025-12-11 10:50:24,478 - __main__ - INFO - Audio energy: 0.034192, max: 0.798191
+2025-12-11 10:50:24,478 - dsp_processor - INFO - ============================================================
+2025-12-11 10:50:24,478 - dsp_processor - INFO - 🔊 STARTING DSP PIPELINE
+2025-12-11 10:50:24,478 - dsp_processor - INFO - ============================================================
+2025-12-11 10:50:24,478 - dsp_processor - INFO - 📊 Original Audio - Energy: 0.034192, Max: 0.798191
+2025-12-11 10:50:24,484 - dsp_processor - INFO - ✅ Step 1: VAD - Voice activity ratio: 0.12 (12%)
+2025-12-11 10:50:24,492 - dsp_processor - INFO - ✅ Bandpass filter applied: 80Hz - 7900Hz
+2025-12-11 10:50:24,492 - dsp_processor - INFO - ✅ Step 2: Bandpass - Energy after filtering: 0.034046
+2025-12-11 10:50:24,492 - dsp_processor - INFO - ✅ Step 3: Pre-emphasis - Energy: 0.011786
+2025-12-11 10:50:24,495 - dsp_processor - INFO - ✅ Step 4: STFT - Frequency bins: 257, Time frames: 590
+2025-12-11 10:50:24,495 - dsp_processor - INFO - ✅ Step 5: Noise Estimation - Average noise level: 0.000271
+2025-12-11 10:50:24,506 - dsp_processor - INFO - ✅ Step 6: Spectral Subtraction - Over-subtraction factor: 2.0
+2025-12-11 10:50:24,507 - dsp_processor - INFO - ✅ Step 7: Wiener Filter - Noise power: 0.000001
+2025-12-11 10:50:24,511 - dsp_processor - INFO - ✅ Step 8: Inverse STFT - Reconstructed 150784 samples
+2025-12-11 10:50:24,511 - dsp_processor - ERROR - DSP processing error: operands could not be broadcast together with shapes (150720,) (150784,) 
+2025-12-11 10:50:24,512 - __main__ - INFO - DSP applied: False, Voice ratio: 1.00
+2025-12-11 10:50:26,012 - whisper_service - INFO - Transcription: Hello, this is Deepa Grover, so we are presenting our DSP project. My partner is Deepa Pratvi.
+2025-12-11 10:50:26,012 - __main__ - INFO - Transcript: Hello, this is Deepa Grover, so we are presenting our DSP project. My partner is Deepa Pratvi.
+2025-12-11 10:50:30,340 - gender_classifier - INFO - Gender prediction: male (confidence: 0.88)
+2025-12-11 10:50:30,340 - gender_classifier - INFO - Features - Pitch: 66.4Hz, F1: 476.5Hz, Centroid: 1928.0Hz
+INFO:     127.0.0.1:58472 - "POST /api/transcribe HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58472 - "GET /api/history?limit=20 HTTP/1.1" 200 OK
